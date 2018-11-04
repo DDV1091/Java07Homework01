@@ -18,6 +18,7 @@ public class Book {
         this.onLoan = false;
     }
 
+    @Override
     public  String toString (){
 
         return "Book id: "+id

@@ -45,25 +45,27 @@ public class Library {
 
     }
 
-    public void add (Book newBook) {
+    public void add2(Book newBook) {
 
 
         lib[curLibraryBookCount()] = newBook;
-        //System.out.println("count after add " + curLibraryBookCount());
+        //System.out.println("count after add2 " + curLibraryBookCount());
 
 
     }
-    public void add2 (Book newBook) throws NoEmptySlotsInLibrary {
+    public void add(Book newBook) throws NoEmptySlotsInLibrary {
 
         if (curLibraryBookCount()==LIBRARY_CAPACITY)
             throw new NoEmptySlotsInLibrary("Библиотека заполнена");
         lib[curLibraryBookCount()] = newBook;
-        //System.out.println("count after add " + curLibraryBookCount());
+        //System.out.println("count after add2 " + curLibraryBookCount());
 
 
     }
 
-    public void remove (Book remBook) {
+    public void remove2(Book remBook)  {
+
+
         for (int i = 0; i < LIBRARY_CAPACITY; i++) {
             if (lib[i] == null) {
                 continue;
@@ -71,9 +73,39 @@ public class Library {
             if (lib[i].getId() == remBook.getId())
                 lib[i] = null;
 
+        }
+        //System.out.println("count after remove2 " + curLibraryBookCount());
+    }
+
+
+    public void remove(Book remBook) throws BookNotFoundException {
+        boolean a = false; //переменная, в которой отмечаем найдена ли книга
+
+        for (int i = 0; i<LIBRARY_CAPACITY; i++)
+        {   if(lib[i] == null)
+        {
+            continue;
+        }
+            if(lib[i].getId() == remBook.getId())
+            {
+                a = true;
+                break;
+            }
 
         }
-        //System.out.println("count after remove " + curLibraryBookCount());
+
+        if(a == false)
+            throw  new BookNotFoundException("Книга с id "+remBook.getId()+" не найдена", remBook.getId());
+
+        for (int i = 0; i < LIBRARY_CAPACITY; i++) {
+            if (lib[i] == null) {
+                continue;
+            }
+            if (lib[i].getId() == remBook.getId())
+                lib[i] = null;
+
+        }
+        //System.out.println("count after remove2 " + curLibraryBookCount());
     }
 
     public String getBookList (){
